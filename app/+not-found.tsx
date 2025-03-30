@@ -1,29 +1,59 @@
-import { Link, Stack } from "expo-router";
-import { View, StyleSheet } from "react-native";
+import { View, Text } from "react-native";
+import { Link, Stack, useRouter } from "expo-router";
 
 export default function NotFoundScreen() {
+  const router = useRouter();
+
   return (
     <>
-      <Stack.Screen options={{ title: "Oops! Not Found" }} />
+      <Stack.Screen
+        options={{
+          title: "Oops! Not Found",
+          headerStyle: {
+            backgroundColor: "#25292e",
+          },
+          headerShadowVisible: false,
+          headerTintColor: "#fff",
+        }}
+      />
       <View style={styles.container}>
+        <Text style={styles.title}>404</Text>
+        <Text style={styles.subtitle}>Page not found</Text>
+
         <Link href="/" style={styles.button}>
-          Go back to Home Screen!
+          <Text style={styles.buttonText}>Go back to Home Screen!</Text>
         </Link>
       </View>
     </>
   );
 }
 
-const styles = StyleSheet.create({
+const styles = {
   container: {
-    backgroundColor: "#25292e",
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: "center" as const,
+    alignItems: "center" as const,
+    backgroundColor: "#25292e",
+    paddingHorizontal: 20,
+  },
+  title: {
+    fontSize: 72,
+    fontWeight: "bold" as const,
+    color: "#ffff",
+  },
+  subtitle: {
+    fontSize: 18,
+    color: "#fff",
+    marginBottom: 32,
   },
   button: {
-    fontSize: 20,
-    textDecorationLine: "underline",
-    color: "#ffffff",
+    backgroundColor: "#000",
+    paddingHorizontal: 24,
+    paddingVertical: 12,
+    borderRadius: 8,
   },
-});
+  buttonText: {
+    color: "#fff",
+    fontSize: 16,
+  },
+};
